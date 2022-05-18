@@ -1,0 +1,143 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Beyond LMS: an overview of other adaptive filter algorithms</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>9a083652-94e2-4bdb-94a0-924a20347a94</md:uuid>
+</metadata>
+
+  <content>
+    <section id="a">
+      <title>RLS algorithms</title>
+      <para id="delete_me">
+	FIR adaptive filter algorithms with faster convergence. Since
+	the Wiener solution can be obtained on one step by computing
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>W</m:mi>
+		<m:mi>opt</m:mi>
+	      </m:msub>
+	    </m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:inverse/>
+		<m:ci>R</m:ci>
+	      </m:apply>
+	      <m:ci>P</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, most RLS algorithms attept to estimate
+	<m:math>
+	  <m:apply>
+	    <m:inverse/>
+	    <m:ci>R</m:ci>
+	  </m:apply>
+	</m:math> and <m:math><m:ci>P</m:ci></m:math> and compute
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>W</m:mi>
+	      <m:mi>opt</m:mi>
+	    </m:msub>
+	  </m:ci>
+	</m:math> from these.
+      
+      </para>   
+      
+      <para id="para2">
+	There are a number of 
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">O</m:ci>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>N</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math> algorithms which are stable and converge quickly. A
+	number of
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">O</m:ci>
+	    <m:ci>N</m:ci>
+	  </m:apply>
+	</m:math> algorithms have been proposed, but these are all
+	unstable except for the lattice filter method. This is
+	described to some extent in the text. The adaptive lattice
+	filter converges quickly and is stable, but reportedly has a
+	very high noise floor.
+      </para>
+      <para id="para3">
+	Many of these approaches can be thought of as attempting to
+	"orthogonalize" <m:math><m:ci>R</m:ci></m:math>, or to rotate
+	the data or filter coefficients to a domain where
+	<m:math><m:ci>R</m:ci></m:math> is diagonal, then doing LMS in
+	each dimension <emphasis>separately</emphasis>, so that a
+	fast-converging step size can be chosen in all directions.
+      </para>
+    </section>
+    <section id="b">
+      <title>Frequency-domain methods</title>
+      <para id="para4">
+	Frequency-domain methods implicitly attempt to do this:
+	
+	<figure id="figure1">
+	  <media id="idp2728464" alt=""><image src="../../media/fig1BeyondLMS.png" mime-type="image/png"/></media>
+        </figure>
+
+	If 
+	<m:math>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>Q</m:ci>
+	    <m:ci>R</m:ci>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci>Q</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> is a diagonal matrix, this yields a fast algorithm. If
+	<m:math><m:ci>Q</m:ci></m:math> is chosen as an FFT matrix,
+	each channel becomes a different frequency bin. Since
+	<m:math><m:ci>R</m:ci></m:math> is Toeplitz and not a
+	circulant, the FFT matrix will not exactly diagonalize
+	<m:math><m:ci>R</m:ci></m:math>, but in many cases it comes
+	very close and frequency domain methods converge very
+	quickly. However, for some <m:math><m:ci>R</m:ci></m:math>
+	they perform no better than LMS. By using an FFT, the
+	transformation <m:math><m:ci>Q</m:ci></m:math> becomes
+	inexpensive
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">O</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>N</m:ci>
+	      <m:apply>
+		<m:log/>
+		<m:ci>N</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>. If one only updates on a block-by-block basis (once
+	per <m:math><m:ci>N</m:ci></m:math> samples), the frequency
+	domain methods only cost
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">O</m:ci>
+	    <m:apply>
+	      <m:log/>
+	      <m:ci>N</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math> computations per sample. which can be important for
+	some applications with large
+	<m:math><m:ci>N</m:ci></m:math>. (Say 16,000,000)
+      </para>
+    </section>
+      
+  </content>
+  
+</document>

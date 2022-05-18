@@ -1,0 +1,491 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Adaptive System Identification</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>5dfac5ca-734f-4c97-b327-a9e65ebbe2e2</md:uuid>
+</metadata>
+
+  <content>
+    <note type="goal" id="idm6172336"><label>Goal</label>
+      To approximate an unknown system (or the behavior of that
+      system) as closely as possible
+    </note>
+    <figure id="figure1">
+      <media id="idp1385536" alt=""><image src="../../media/fig1AdaptiveSysID.png" mime-type="image/png"/></media>
+    </figure>
+    <para id="para1">
+      The optimal solution is
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci>R</m:ci>
+	    </m:apply>
+	    <m:ci>P</m:ci>
+	  </m:apply>
+	  <m:ci>W</m:ci>
+	</m:apply>
+      </m:math>
+    </para>   
+    <para id="para2">
+      Suppose the unknown system is a causal, linear time-invariant filter:
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>d</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msub>
+	  </m:ci>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#convolve"/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>x</m:mi>
+		<m:mi>k</m:mi>
+	      </m:msub>
+	    </m:ci>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>h</m:mi>
+		<m:mi>k</m:mi>
+	      </m:msub>
+	    </m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar>
+	      <m:ci>i</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:cn>0</m:cn>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:infinity/>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mrow>
+		    <m:mi>k</m:mi>
+		    <m:mo>-</m:mo>
+		    <m:mi>i</m:mi>
+		  </m:mrow>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>h</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      Now
+      <equation id="equation1">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>P</m:ci>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>d</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>x</m:mi>
+			<m:mrow>
+			  <m:mi>k</m:mi>
+			  <m:mo>-</m:mo>
+			  <m:mi>j</m:mi>
+			</m:mrow>
+		      </m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:matrixrow>
+	    </m:matrix>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:sum/>
+		      <m:bvar>
+			<m:ci>i</m:ci>
+		      </m:bvar>
+		      <m:uplimit>
+			<m:infinity/>
+		      </m:uplimit>
+		      <m:lowlimit>
+			<m:cn>0</m:cn>
+		      </m:lowlimit>
+		      <m:apply>
+			<m:times/>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>x</m:mi>
+			    <m:mrow>
+			      <m:mi>k</m:mi>
+			      <m:mo>-</m:mo>
+			      <m:mi>i</m:mi>
+			    </m:mrow>
+			  </m:msub>
+			</m:ci>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>h</m:mi>
+			    <m:mi>i</m:mi>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>x</m:mi>
+			<m:mrow>
+			  <m:mi>k</m:mi>
+			  <m:mo>-</m:mo>
+			  <m:mi>j</m:mi>
+			</m:mrow>
+		      </m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:matrixrow>
+	    </m:matrix>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar>
+		    <m:ci>i</m:ci>
+		  </m:bvar>
+		  <m:uplimit>
+		    <m:infinity/>
+		  </m:uplimit>
+		  <m:lowlimit>
+		    <m:cn>0</m:cn>
+		  </m:lowlimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>h</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		      <m:apply>
+			<m:times/>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>x</m:mi>
+			    <m:mrow>
+			      <m:mi>k</m:mi>
+			      <m:mo>-</m:mo>
+			      <m:mi>i</m:mi>
+			    </m:mrow>
+			  </m:msub>
+			</m:ci>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>x</m:mi>
+			    <m:mrow>
+			      <m:mi>k</m:mi>
+			      <m:mo>-</m:mo>
+			      <m:mi>j</m:mi>
+			    </m:mrow>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:matrixrow>
+	    </m:matrix>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar>
+		    <m:ci>i</m:ci>
+		  </m:bvar>
+		  <m:uplimit>
+		    <m:infinity/>
+		  </m:uplimit>
+		  <m:lowlimit>
+		    <m:cn>0</m:cn>
+		  </m:lowlimit>
+		  <m:apply>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>h</m:mi>
+			<m:mi>i</m:mi>
+		      </m:msub>
+		    </m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">
+		      <m:msub>
+			<m:mi>r</m:mi>
+			<m:mi>xx</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>j</m:ci>
+		      <m:ci>i</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:matrixrow>
+	    </m:matrix>
+	    <m:apply>
+	      <m:times/>
+	      <m:matrix>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:ci type="fn">
+		      <m:msub>
+			<m:mi>r</m:mi>
+			<m:mi>xx</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:ci>…</m:ci>
+		  <m:ci>…</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>M</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>|</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:ci>M</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>M</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>…</m:ci>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		  <m:ci>⋱</m:ci>
+		  <m:ci>⋱</m:ci>
+		  <m:ci>⋮</m:ci>
+		  <m:ci>|</m:ci>
+		  <m:ci>⋮</m:ci>
+		  <m:ci>⋮</m:ci> 
+		  <m:ci>…</m:ci>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:ci>⋱</m:ci>
+		  <m:ci>⋱</m:ci>
+		  <m:ci>⋮</m:ci>
+		  <m:ci>|</m:ci>
+		  <m:ci>⋮</m:ci>
+		  <m:ci>⋮</m:ci> 
+		  <m:ci>…</m:ci>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:ci>⋮</m:ci> 
+		  <m:ci>⋮</m:ci> 
+		  <m:ci>…</m:ci> 
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:ci>|</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		  <m:ci>…</m:ci>
+		</m:matrixrow>
+		<m:matrixrow>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>M</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>M</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>…</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:cn>0</m:cn>
+		  </m:apply>
+		  <m:ci>|</m:ci>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn">r</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:ci>…</m:ci>
+		</m:matrixrow>
+	      </m:matrix>
+	      <m:vector>
+		<m:apply>
+		  <m:ci type="fn">h</m:ci>
+		  <m:cn>0</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">h</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">h</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:ci>⋮</m:ci>
+	      </m:vector>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      If the adaptive filter <m:math><m:ci>H</m:ci></m:math> is a
+      length-<m:math><m:ci>M</m:ci></m:math> FIR filter 
+      (<m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">h</m:ci>
+	    <m:ci>m</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:ci type="fn">h</m:ci>
+	    <m:apply>
+	      <m:plus/>
+	      <m:ci>m</m:ci>
+	      <m:cn>1</m:cn>
+	    </m:apply>
+	  </m:apply>
+	  <m:ci>…</m:ci>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>), this reduces to
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>P</m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>R</m:ci>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci>h</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      and
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>W</m:mi>
+	      <m:mi>opt</m:mi>
+	    </m:msub>
+	  </m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci>R</m:ci>
+	    </m:apply>
+	    <m:ci>P</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:inverse/>
+	      <m:ci>R</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>R</m:ci>
+	      <m:ci type="vector">h</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:ci type="vector">h</m:ci>
+	</m:apply>
+      </m:math>
+      FIR adaptive system identification thus converges in the mean
+      to the corresponding <m:math><m:ci>M</m:ci></m:math> samples of the
+      impulse response of the unknown system.
+    </para>
+  </content>
+  
+</document>

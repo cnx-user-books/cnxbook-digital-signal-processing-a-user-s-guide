@@ -1,0 +1,231 @@
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">
+  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
+    <md:content-id>col10372</md:content-id>
+    <md:title>Digital Signal Processing: A User's Guide</md:title>
+    <md:language>en</md:language>
+    <md:license url="http://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution License</md:license>
+    <md:uuid>a806bd3a-194f-4ed2-9609-9436b4ced26e</md:uuid>
+<md:slug>digital-signal-processing-a-user-s-guide</md:slug>
+</metadata>
+  <col:content>
+    <col:module document="m13782"/>
+    <col:subcollection>
+      <md:title>Background, Review, and Reference</md:title>
+      <col:content>
+        <col:module document="m10342"/>
+        <col:module document="m0508"/>
+        <col:module document="m10087"/>
+        <col:module document="m11948"/>
+        <col:module document="m10760"/>
+        <col:module document="m10096"/>
+        <col:module document="m10098"/>
+        <col:module document="m10247"/>
+        <col:module document="m10962"/>
+        <col:subcollection>
+          <md:title>Sampling theory</md:title>
+          <col:content>
+            <col:module document="m11419"/>
+            <col:module document="m11423"/>
+            <col:module document="m11443"/>
+            <col:module document="m11465"/>
+            <col:module document="m10994"/>
+            <col:module document="m10992"/>
+            <col:module document="m10993"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Z-Transform</md:title>
+          <col:content>
+            <col:module document="m10595"/>
+            <col:module document="m10549"/>
+            <col:module document="m10119"/>
+            <col:module document="m10556"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Random Signals and Processes</md:title>
+          <col:content>
+            <col:module document="m10649"/>
+            <col:module document="m10684"/>
+            <col:module document="m10656"/>
+            <col:module document="m10673"/>
+            <col:module document="m10676"/>
+            <col:module document="m10686"/>
+          </col:content>
+        </col:subcollection>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>The DFT, FFT, and Practical Spectral Analysis</md:title>
+      <col:content>
+        <col:subcollection>
+          <md:title>The Discrete Fourier Transform</md:title>
+          <col:content>
+            <col:module document="m12019"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Spectrum Analysis</md:title>
+          <col:content>
+            <col:module document="m12032"/>
+            <col:module document="m12014"/>
+            <col:module document="m10570"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Fast Fourier Transform Algorithms</md:title>
+          <col:content>
+            <col:module document="m12026"/>
+            <col:module document="m12029"/>
+            <col:module document="m12024"/>
+            <col:subcollection>
+              <md:title>Power-of-Two FFTs</md:title>
+              <col:content>
+                <col:module document="m12059"/>
+                <col:subcollection>
+                  <md:title>Radix-2 Algorithms</md:title>
+                  <col:content>
+                    <col:module document="m12016"/>
+                    <col:module document="m12018"/>
+                    <col:module document="m12012"/>
+                  </col:content>
+                </col:subcollection>
+                <col:module document="m12027"/>
+                <col:module document="m12031"/>
+              </col:content>
+            </col:subcollection>
+            <col:module document="m12021"/>
+            <col:module document="m12025"/>
+            <col:module document="m12033"/>
+          </col:content>
+        </col:subcollection>
+        <col:module document="m12022"/>
+        <col:module document="m12013"/>
+        <col:module document="m12023"/>
+        <col:module document="m12060"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Digital Filter Design</md:title>
+      <col:content>
+        <col:module document="m12776"/>
+        <col:subcollection>
+          <md:title>FIR Filter Design</md:title>
+          <col:content>
+            <col:module document="m12802"/>
+            <col:module document="m12790"/>
+            <col:module document="m12789"/>
+            <col:module document="m12799"/>
+            <col:module document="m12812"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>IIR Filter Design</md:title>
+          <col:content>
+            <col:module document="m12758"/>
+            <col:module document="m12763"/>
+            <col:module document="m12757"/>
+            <col:module document="m12760"/>
+            <col:module document="m12759"/>
+            <col:module document="m12762"/>
+            <col:module document="m12761"/>
+          </col:content>
+        </col:subcollection>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Digital Filter Structures and Quantization Error Analysis</md:title>
+      <col:content>
+        <col:subcollection>
+          <md:title>Filter Structures</md:title>
+          <col:content>
+            <col:module document="m11917"/>
+            <col:module document="m11918"/>
+            <col:module document="m11919"/>
+            <col:module document="m11920"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Fixed-Point Numbers</md:title>
+          <col:content>
+            <col:module document="m11930"/>
+            <col:module document="m11921"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Quantization Error Analysis</md:title>
+          <col:content>
+            <col:module document="m11922"/>
+            <col:module document="m11923"/>
+            <col:module document="m11924"/>
+            <col:module document="m11925"/>
+            <col:module document="m11926"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Overflow Problems and Solutions</md:title>
+          <col:content>
+            <col:module document="m11928"/>
+            <col:module document="m11927"/>
+          </col:content>
+        </col:subcollection>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Adaptive Filters and Applications</md:title>
+      <col:content>
+        <col:module document="m11535"/>
+        <col:subcollection>
+          <md:title>Wiener Filter Algorithm</md:title>
+          <col:content>
+            <col:module document="m11825"/>
+            <col:module document="m11824"/>
+            <col:module document="m11826"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>The LMS Adaptive Filter Algorithm</md:title>
+          <col:content>
+            <col:module document="m11829"/>
+            <col:module document="m11830"/>
+            <col:module document="m11831"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Applications of Adaptive Filters</md:title>
+          <col:content>
+            <col:module document="m11536"/>
+            <col:module document="m11906"/>
+            <col:module document="m11907"/>
+            <col:module document="m11835"/>
+            <col:module document="m11909"/>
+          </col:content>
+        </col:subcollection>
+        <col:subcollection>
+          <md:title>Other Adaptive Filter Algorithms</md:title>
+          <col:content>
+            <col:module document="m11911"/>
+            <col:module document="m11912"/>
+            <col:module document="m11913"/>
+            <col:module document="m11914"/>
+            <col:module document="m11915"/>
+          </col:content>
+        </col:subcollection>
+        <col:module document="m11916"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Multirate Signal Processing</md:title>
+      <col:content>
+        <col:module document="m12777"/>
+        <col:module document="m12801"/>
+        <col:module document="m12800"/>
+        <col:module document="m12773"/>
+        <col:module document="m12803"/>
+        <col:module document="m12771"/>
+        <col:module document="m12770"/>
+        <col:module document="m12775"/>
+      </col:content>
+    </col:subcollection>
+  </col:content>
+</col:collection>

@@ -1,0 +1,91 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Adaptive Echo Cancellation</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>95c9ffd1-b4a3-40a2-a185-b2cd2900b069</md:uuid>
+</metadata>
+
+  <content>
+    <para id="delete_me">
+      An adaptive echo canceller is a specific type of adaptive interference
+      canceller that removes echos. Adaptive echo
+    cancellers are found in all modern telephone systems.
+      <figure id="figure1">
+	<media id="idp2853840" alt=""><image src="../../media/fig1AdaptiveEcho.png" mime-type="image/png"/></media>
+      </figure>
+      The hybrid is supposed to split the opposite-going waves,
+      but typically achieves only about 15dB of suppression. This signal will
+      eventually reach the other end and be coupled back, with a long
+      delay, to the original source, which gives a very annoying echo.
+      
+      <figure id="figure2">
+	<title>Echo canceller</title>
+	<media id="idp1279184" alt=""><image src="../../media/fig2AdaptiveEcho.png" mime-type="image/png"/></media>
+      </figure>
+     
+      Because the input to the adaptive echo canceller contains only
+      the signal from the far end that will echo off of the hybrid,
+      it cancels the echo while passing the near-end signal as desired.
+    </para>
+    <section id="narrow">
+      <title>Narrowband interference canceller</title>
+      
+      <figure id="figure3">
+	<media id="idp1789136" alt=""><image src="../../media/fig3AdaptiveEcho.png" mime-type="image/png"/></media>
+      </figure>
+      
+      <para id="para2">
+	A sinusoid is predictable
+	<m:math><m:ci>Δ</m:ci></m:math> samples ahead, whereas
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>s</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msub>
+	  </m:ci>
+	</m:math> may not be, so the sinusoid can be cancelled using the
+        adaptive system in the Figure.  This is another special case of the
+        adaptive interference canceller in which the noise reference input
+        is a delayed version of the primary (signal plus noise) input.
+        Note that <m:math><m:ci>Δ</m:ci></m:math> must be large
+	enough so that
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>s</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msub>
+	  </m:ci>
+	</m:math>
+        and
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>s</m:mi>
+	      <m:mrow>
+		<m:mi>k</m:mi>
+		<m:mo>-</m:mo>
+		<m:mi>Δ</m:mi>
+	      </m:mrow>
+	    </m:msub>
+	  </m:ci>
+	</m:math> are uncorrelated, or some of the signal will be
+	cancelled as well!
+      </para>
+      <exercise id="ex1">
+	<problem id="idp2730992">
+	  <para id="para4">
+	    How would you construct an "adaptive line enhancer"
+            that preserves the sinusoids but cancels the uncorrelated noise?
+	  </para>
+	</problem>
+      </exercise>
+      <list id="list1" list-type="bulleted">
+	<title>Other Applications</title>
+	<item>Adaptive array processing</item>
+	<item>Adaptive control</item>
+	<item>etc...</item>
+      </list>
+    </section>
+  </content>
+  
+</document>

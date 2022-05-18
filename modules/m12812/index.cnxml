@@ -1,0 +1,601 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Lagrange Interpolation</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>14332878-6c36-4db1-be96-94accbb4618d</md:uuid>
+</metadata>
+
+  <content>
+    <para id="p1">Lagrange's interpolation method is a simple and clever way of finding the unique
+<m:math><m:ci>L</m:ci></m:math>th-order polynomial that exactly passes through
+     <m:math>
+	<m:apply>
+	  <m:plus/>
+	  <m:ci>L</m:ci>
+	  <m:cn>1</m:cn>
+	</m:apply>
+      </m:math>
+distinct samples of a signal.
+Once the polynomial is known, its value can easily be interpolated at any point
+using the polynomial equation.
+Lagrange interpolation is useful in many applications, including <link document="m12799">Parks-McClellan FIR Filter Design</link>.</para>
+
+<section id="lagrangeform">
+<title>Lagrange interpolation formula</title>
+    <para id="p2">Given an <m:math><m:ci>L</m:ci></m:math>th-order polynomial
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">P</m:ci>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:plus/>
+	    <m:ci><m:msub>
+		<m:mi>a</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub></m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>a</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:ci>...</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>a</m:mi>
+		  <m:mi>L</m:mi>
+	      </m:msub></m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:ci>x</m:ci>
+		<m:ci>L</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar>
+	      <m:ci>k</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:cn>0</m:cn>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:ci>L</m:ci>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci><m:msub>
+		  <m:mi>a</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msub></m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:ci>x</m:ci>
+		<m:ci>k</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      and 
+      <m:math>
+	<m:apply>
+	  <m:plus/>
+	  <m:ci>L</m:ci>
+	  <m:cn>1</m:cn>
+	</m:apply>
+      </m:math> values of <m:math><m:apply>
+	  <m:ci type="fn">P</m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math> at different <m:math><m:ci>
+	  <m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mi>k</m:mi>
+	  </m:msub></m:ci>
+      </m:math>, <m:math><m:apply>
+	  <m:in/>
+	  <m:ci>k</m:ci>
+	  <m:set>
+	    <m:cn>0</m:cn>
+	    <m:cn>1</m:cn>
+	    <m:ci>...</m:ci>
+	    <m:ci>L</m:ci>
+	  </m:set>
+	</m:apply>
+      </m:math>, 
+      <m:math>
+	<m:apply>
+	  <m:neq/>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mi>i</m:mi>
+	    </m:msub></m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math>, <m:math>
+	<m:apply>
+	  <m:neq/>
+	  <m:ci>i</m:ci>
+	  <m:ci>j</m:ci>
+	</m:apply>
+      </m:math>,
+
+the polynomial can be written as
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">P</m:ci>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar>
+	      <m:ci>k</m:ci>
+	    </m:bvar>
+	    <m:lowlimit>
+	      <m:cn>0</m:cn>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:ci>L</m:ci>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:ci type="fn">P</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>k</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>x</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>x</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci>...</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>x</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mrow>
+			  <m:mi>k</m:mi>
+			  <m:mo>-</m:mo>
+			  <m:mn>1</m:mn>
+			</m:mrow>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>x</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mrow>
+			  <m:mi>k</m:mi>
+			  <m:mo>+</m:mo>
+			  <m:mn>1</m:mn>
+			</m:mrow>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci>...</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>x</m:ci>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>L</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>1</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mn>2</m:mn>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci>...</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mrow>
+			  <m:mi>k</m:mi>
+			  <m:mo>-</m:mo>
+			  <m:mn>1</m:mn>
+			</m:mrow>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mrow>
+			  <m:mi>k</m:mi>
+			  <m:mo>+</m:mo>
+			  <m:mn>1</m:mn>
+			</m:mrow>
+		      </m:msub></m:ci>
+		  </m:apply>
+		  <m:ci>...</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub></m:ci>
+		    <m:ci><m:msub>
+			<m:mi>x</m:mi>
+			<m:mi>L</m:mi>
+		      </m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+The value of this polynomial at other <m:math><m:ci>x</m:ci></m:math> can be computed via substitution
+into this formula, or by expanding this formula to determine the polynomial coefficients
+<m:math>
+  <m:ci><m:msub>
+    <m:mi>a</m:mi>
+    <m:mi>k</m:mi>
+  </m:msub></m:ci>
+</m:math>
+in standard form.</para>
+</section>
+
+    
+
+    <section id="proofsec">
+      <title>Proof</title>
+      <para id="proofp">Note that for each term in the Lagrange interpolation formula above,
+
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:product/>
+	      <m:bvar>
+		<m:ci>i</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:cn>0,</m:cn>
+	  <m:apply>
+	    <m:neq/>
+	    <m:ci>i</m:ci>
+	    <m:ci>k</m:ci>
+	  </m:apply>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:ci>L</m:ci>
+	      </m:uplimit>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>x</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>k</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>i</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:piecewise>
+	      <m:piece>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>x</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>k</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+	      </m:piece>
+	      <m:piece>
+		<m:cn>0</m:cn>
+                <m:apply><m:and/>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>x</m:ci>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>j</m:mi>
+		    </m:msub></m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:neq/>
+		  <m:ci>j</m:ci>
+		  <m:ci>k</m:ci>
+		</m:apply></m:apply>
+	      </m:piece>
+	    </m:piecewise>
+	  </m:apply>
+	</m:math> and that it is an <m:math><m:ci>L</m:ci>
+	</m:math>th-order polynomial in <m:math><m:ci>x</m:ci>
+	</m:math>.
+
+The Lagrange interpolation formula is thus exactly equal to
+<m:math><m:apply>
+	  <m:ci type="fn">P</m:ci>
+	  <m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msub></m:ci>
+	</m:apply>
+      </m:math> at all <m:math><m:ci>
+	  <m:msub>
+	    <m:mi>x</m:mi>
+	    <m:mi>k</m:mi>
+	  </m:msub></m:ci>
+      </m:math>,
+and as a sum of <m:math><m:ci>L</m:ci></m:math>th-order polynomials is itself an <m:math><m:ci>L</m:ci></m:math>th-order polynomial.</para>
+    </section>
+
+
+
+      <para id="ofdmp5">It can be shown that the <link url="http://en.wikipedia.org/wiki/Vandermonde_matrix">Vandermonde matrix</link>
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+            <m:apply><m:times/>
+	    <m:matrix>
+	      <m:matrixrow>
+		<m:cn>1</m:cn>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub></m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:ci>...</m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>0</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci>L</m:ci>
+		</m:apply>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>1</m:cn>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:ci>...</m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>1</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci>L</m:ci>
+		</m:apply>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>1</m:cn>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:ci>...</m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mn>2</m:mn>
+		    </m:msub></m:ci>
+		  <m:ci>L</m:ci>
+		</m:apply>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:ci>⋮</m:ci>
+		<m:ci>⋮</m:ci>
+		<m:ci>⋮</m:ci>
+		<m:ci>⋱</m:ci>
+		<m:ci>⋮</m:ci>
+	      </m:matrixrow>
+	      <m:matrixrow>
+		<m:cn>1</m:cn>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>L</m:mi>
+		  </m:msub></m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>L</m:mi>
+		    </m:msub></m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:ci>...</m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci><m:msub>
+		      <m:mi>x</m:mi>
+		      <m:mi>L</m:mi>
+		    </m:msub></m:ci>
+		  <m:ci>L</m:ci>
+		</m:apply>
+	      </m:matrixrow>
+	    </m:matrix>
+	    <m:vector>
+	      <m:ci><m:msub>
+		  <m:mi>a</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>a</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>a</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>⋮</m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>a</m:mi>
+		  <m:mi>L</m:mi>
+		</m:msub></m:ci>
+	    </m:vector></m:apply>
+	    <m:vector>
+	      <m:apply>
+		<m:ci type="fn">P</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>0</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">P</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>1</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">P</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mn>2</m:mn>
+		  </m:msub></m:ci>
+	      </m:apply>
+	      <m:ci>⋮</m:ci>
+	      <m:apply>
+		<m:ci type="fn">P</m:ci>
+		<m:ci><m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>L</m:mi>
+		  </m:msub></m:ci>
+	      </m:apply>
+	    </m:vector>
+	  </m:apply>
+	</m:math>
+
+	has a non-zero determinant and is thus invertible, so the 
+	<m:math><m:ci>L</m:ci>
+	</m:math>th-order polynomial passing through all
+	<m:math>
+	  <m:apply>
+	    <m:plus/>
+	    <m:ci>L</m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math> sample points
+	<m:math><m:ci><m:msub>
+	      <m:mi>x</m:mi>
+	      <m:mi>j</m:mi>
+	    </m:msub></m:ci>
+	</m:math> is unique. Thus the Lagrange polynomial expressions, as an <m:math><m:ci>L</m:ci>
+	</m:math>th-order polynomial passing through the 
+	<m:math>
+	  <m:apply><m:plus/>
+	    <m:ci>L</m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math> sample points, must be the unique
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">P</m:ci>
+	    <m:ci>x</m:ci>
+	  </m:apply>
+	</m:math>.
+
+      </para>
+    
+
+  </content>
+  
+</document>

@@ -1,0 +1,444 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Adaptive Interference (Noise) Cancellation</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>97d8d83d-f35f-450f-a557-6f96babe359e</md:uuid>
+</metadata>
+
+  <content>
+    <note type="Goal" id="idp8915200"><label>Goal</label>Automatically eliminate unwanted interference in
+    a signal.
+    </note>
+   
+    <figure id="figure1">
+      <media id="idm520608" alt=""><image src="../../media/fig1AdaptiveInter.png" mime-type="image/png"/></media>
+    </figure>
+    <para id="delete_me">
+      The object is to subtract out as much of the noise as possible.
+    </para>   
+    <example id="example1">
+      <title>Engine noise cancellation in automobiles</title>
+      
+      <figure id="figure2">
+	<media id="idp5449664" alt=""><image src="../../media/fig2AdaptiveInter.png" mime-type="image/png"/></media>
+      </figure>
+      <para id="para1">
+	The firewall attenuates and filters the noise reaching the
+	listener's ear, so it is not the same as
+	<m:math>
+	  <m:apply>
+	    <m:ci>
+	      <m:msubsup>
+		<m:mi>n</m:mi>
+		<m:mi>k</m:mi>
+		<m:mi>'</m:mi>
+	      </m:msubsup>
+	    </m:ci>
+	  </m:apply>
+	</m:math>. There is also a delay due to acoustic propagation
+	in the air.  For maximal cancellation, an adaptive filter
+        is thus needed to make
+        <m:math>
+	  <m:apply>
+	    <m:ci>
+	      <m:msubsup>
+		<m:mi>n</m:mi>
+		<m:mi>k</m:mi>
+		<m:mi>'</m:mi>
+	      </m:msubsup>
+	    </m:ci>
+	  </m:apply>
+	</m:math>
+        as similar as possible to the delayed
+        <m:math>
+	  <m:apply>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>n</m:mi>
+		<m:mi>k</m:mi>
+	      </m:msub>
+	    </m:ci>
+	  </m:apply>
+	</m:math>.
+
+	
+	<figure id="figure3">
+	  <media id="idm1776880" alt=""><image src="../../media/fig3AdaptiveInter.png" mime-type="image/png"/></media>
+	</figure>
+
+      </para>
+    </example>
+    <exercise id="exercise1">
+      <problem id="idm1774944">
+	<para id="para2">
+	  What conditions must we impose upon the microphone
+	  locations for this to work? (Think causality and physics!)
+	</para>
+      </problem>
+    </exercise>
+    <section id="analysis">
+      <title>Analysis of the interference cancellor</title>
+      
+      <figure id="figure4">
+	<media id="idp6960320" alt=""><image src="../../media/fig4AdaptiveInter.png" mime-type="image/png"/></media>
+      </figure>
+      
+      <para id="para3">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>ε</m:mi>
+		    <m:mi>k</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	      <m:apply>
+		<m:power/>
+		<m:apply>
+		  <m:plus/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mi>k</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>n</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>y</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mi>k</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>s</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>n</m:mi>
+			  <m:mi>k</m:mi>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>y</m:mi>
+			  <m:mi>k</m:mi>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>n</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>y</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub>
+		    </m:ci>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	We assume
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>s</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msub>
+	  </m:ci>
+	</m:math>,
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>n</m:mi>  
+	      <m:mi>k</m:mi>
+	    </m:msub>
+	  </m:ci>
+	</m:math>, and
+	<m:math>  
+	  <m:ci>
+	    <m:msubsup>
+	      <m:mi>n</m:mi>
+	      <m:mi>k</m:mi>
+	      <m:mi>'</m:mi>
+	    </m:msubsup>
+	  </m:ci>
+	</m:math>
+	are zero-mean signals, and that 
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>s</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msub>
+	  </m:ci>
+	</m:math> is independent of
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>n</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msub>
+	  </m:ci>
+	</m:math> and
+	<m:math>
+	  <m:ci>
+	    <m:msubsup>
+	      <m:mi>n</m:mi>
+	      <m:mi>k</m:mi>
+	      <m:mi>'</m:mi>
+	    </m:msubsup>
+	  </m:ci>
+	</m:math>. Then
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mi>k</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>n</m:mi>
+		      <m:mi>k</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mi>k</m:mi>
+		    </m:msub>
+		  </m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>s</m:mi>
+		    <m:mi>k</m:mi>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>n</m:mi>
+		      <m:mi>k</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>y</m:mi>
+		      <m:mi>k</m:mi>
+		    </m:msub>
+		  </m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	      <m:apply>
+		<m:power/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>ε</m:mi>
+		    <m:mi>k</m:mi>
+		  </m:msub>
+		</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>
+		    <m:msub>
+		      <m:mi>s</m:mi>
+		      <m:mi>k</m:mi>
+		    </m:msub>
+		  </m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>n</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub>
+		    </m:ci>
+		    <m:ci>
+		      <m:msub>
+			<m:mi>y</m:mi>
+			<m:mi>k</m:mi>
+		      </m:msub>
+		    </m:ci>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	Since the input signal has no information about 
+	<m:math>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>s</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msub>
+	  </m:ci>
+	</m:math> in it, minimizing 
+	<m:math>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#expectedvalue"/>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>ε</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math> can only affect the second term, which is the
+	standard Wiener filtering problem, with solution
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>W</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:inverse/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>R</m:mi>
+		    <m:mrow>
+		      <m:msup>
+			<m:mi>n</m:mi>
+			<m:mi>'</m:mi>
+		      </m:msup>
+		      <m:msup>
+			<m:mi>n</m:mi>
+			<m:mi>'</m:mi>
+		      </m:msup>
+		    </m:mrow>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>P</m:mi>
+		  <m:mrow>						 
+		    <m:mi>n</m:mi>
+		    <m:msup>
+		      <m:mi>n</m:mi>
+		      <m:mi>'</m:mi>
+		    </m:msup>
+		  </m:mrow>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	
+      </para>
+    </section>
+
+  </content>	      
+  
+</document>

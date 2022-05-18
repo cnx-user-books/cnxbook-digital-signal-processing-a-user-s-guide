@@ -1,0 +1,16 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Applications of Adaptive Filters</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>e1d93ced-60d7-4584-bd61-8fec3f4507b2</md:uuid>
+</metadata>
+
+  <content>
+    <para id="para">
+      Adaptive filters can be configured in a surprisingly large
+    variety of ways for application in a large number of
+    applications. The same LMS algorithm can be used to adapt the
+    filter coefficients in most of these configurations; only the
+    "plumbing" changes.
+    </para>
+  </content>
+  
+</document>

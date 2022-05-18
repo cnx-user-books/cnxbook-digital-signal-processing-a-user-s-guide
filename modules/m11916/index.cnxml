@@ -1,0 +1,167 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml" xmlns:bib="http://bibtexml.sf.net/">
+  <title>Summary of Adaptive Filtering Methods</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>ed20d70c-dcba-4ff1-996c-afd93c79123e</md:uuid>
+</metadata>
+
+  <content>
+    <list id="list1" list-type="enumerated">
+      <item><label>LMS</label>
+	 remains the simplest and best algorithm when
+	slow convergence is not a serious issue (typically used)
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">O</m:ci>
+	    <m:ci>N</m:ci>
+	  </m:apply>
+	</m:math>
+      </item>
+      <item><label>NLMS</label>
+	 simple extension of the LMS with much faster
+	convergence in many cases (very commonly used)
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">O</m:ci>
+	    <m:ci>N</m:ci>
+	  </m:apply>
+	</m:math>
+      </item>
+      <item><label>Frequency-domain methods</label>
+	
+	offer computational savings 
+	(<m:math>
+	  <m:apply>
+	    <m:ci type="fn">O</m:ci>
+	    <m:apply>
+	      <m:log/>
+	      <m:ci>N</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>) for long filters and usually offer faster
+	convergence, too (sometimes used; very commonly used when
+	there are already FFTs in the system)
+      </item>
+      <item><label>Lattice methods</label>
+	 are stable and converge quickly,
+	but cost substantially more than LMS and have higher residual
+	EMSE than many methods (very occasionally used)
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">O</m:ci>
+	    <m:ci>N</m:ci>
+	  </m:apply>
+	</m:math>
+      </item>
+      <item><label>RLS</label>
+	 algorithms that converge quickly and are
+	stable exist. However, they are considerably more expensive
+	than LMS. (almost never used)
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">O</m:ci>
+	    <m:ci>N</m:ci>
+	  </m:apply>
+	</m:math>
+      </item>
+      <item><label>Block RLS</label>
+	 (least squares) methods exist and can
+	be pretty efficient in some cases. (occasionally used)
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">O</m:ci>
+	    <m:apply>
+	      <m:log/>
+	      <m:ci>N</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>,
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">O</m:ci>
+	    <m:ci>N</m:ci>
+	  </m:apply>
+	</m:math>,
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">O</m:ci>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>N</m:ci>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </item>
+      <item><label>IIR</label>
+	 methods are difficult to implement
+	successfully and pose certain difficulties, but are sometimes
+	used in some applications, for example noise cancellation of
+	low frequency noise (very occasionally used)
+      </item>
+      <item><label>CMA</label>
+	 very useful when applicable (blind
+	equalization); CMA is <emphasis>the</emphasis> method for
+	blind equalizer initialization (commonly used in a few specific equalization applications)
+	<m:math>
+	  <m:apply>
+	    <m:ci type="fn">O</m:ci>
+	    <m:ci>N</m:ci>
+	  </m:apply>
+	</m:math>
+      </item>
+    </list>
+    <note id="idm1439568">In general, getting adaptive filters to work well in an
+    application is much more challenging than, say, FFTs or IIR
+    filters; they generally require lots of tweaking!</note>
+    
+  </content>
+  <bib:file>
+    <bib:entry id="WidrowandStearns">
+      <bib:book>
+	<bib:author>B. Widrow and S.D. Stearns</bib:author>
+	<bib:title>Adaptive Signal Processing</bib:title>
+	<bib:publisher>Prentice-Hall</bib:publisher>
+	<bib:year>1985</bib:year>
+	<bib:note>Good on applications, LMS</bib:note>
+      </bib:book>
+    </bib:entry>
+    <bib:entry id="CowanandGrant">
+      <bib:book>
+	<bib:author>C.F.N. Cowan and P.M. Grant</bib:author>
+	<bib:title>Adaptive Filters</bib:title>
+	<bib:publisher>Prentice-Hall</bib:publisher>
+	<bib:year>1985</bib:year>
+	<bib:note>Good overview of lots of topics</bib:note>
+      </bib:book>
+    </bib:entry>
+    <bib:entry id="TreichlerJohnsonLarimore">
+      <bib:book>
+	<bib:author>J.R. Treichler, C.R. Johnson and M.G. Larimore</bib:author>
+	<bib:title>Theory and Design of Adaptive Filters</bib:title>
+	<bib:publisher>Wiley-Interscience</bib:publisher>
+	<bib:year>1987</bib:year>
+	<bib:note>Good introduction to adaptive filtering, CMA; nice coverage of hardware</bib:note>
+      </bib:book>
+    </bib:entry>
+    <bib:entry id="HonigandMesserschmidt">
+      <bib:book>
+	<bib:author>M.L. Honig and D.G. Messerschmidt</bib:author>
+	<bib:title>Adaptive Filters: Structures, Algorithms, 
+	  and Applications</bib:title>
+	<bib:publisher>Kluwer</bib:publisher>
+	<bib:year>1984</bib:year>
+	<bib:note>Good coverage of lattice algorithms</bib:note>
+      </bib:book>
+    </bib:entry>
+    <bib:entry id="Haykin">
+      <bib:book>
+	<bib:author>S. Haykin</bib:author>
+	<bib:title>Adaptive Filters Theory</bib:title>
+	<bib:publisher>Prentice-Hall</bib:publisher>
+	<bib:year>1986</bib:year>
+	<bib:note>Nice coverage of adaptive filter theory; 
+	  Good reference</bib:note>
+      </bib:book>
+    </bib:entry>
+
+  </bib:file>
+</document>
