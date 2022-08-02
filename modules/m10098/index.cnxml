@@ -75,8 +75,6 @@
 	    </m:apply>
 	  </m:math>
 	</equation>
-      </para><para id="eip-385"><media id="id16571020" alt=""><image src="simpleLTIsys.png" mime-type="image/png"/></media>
-	
       </para><para id="eip-923">Using this and the fact that <m:math><m:ci>ℋ</m:ci></m:math>
 	is linear, calculating
 	<m:math display="inline">
