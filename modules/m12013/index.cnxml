@@ -661,7 +661,7 @@
 	</m:math> around L
 	when implementing with circular convolution.
       </note>
-      So, a weird-length <link document="12032" target-id="DFTequation">DFT</link> can be implemented relatively efficiently
+      So, a weird-length <link document="m12032" target-id="DFTequation">DFT</link> can be implemented relatively efficiently
       using power-of-two algorithms via the chirp-z transform.
     </para>
 

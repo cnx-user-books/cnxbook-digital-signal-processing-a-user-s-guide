@@ -142,8 +142,8 @@ When the step-size between blocks is less than
    </m:apply> 
  </m:math>,
 the <link document="m12029">running FFT</link> will be most efficient.
-(Note that any <link document="12032">window</link> must be applied via frequency-domain convolution,
-which is quite efficient for sinusoidal windows such as the <link document="12032">Hamming window</link>.)
+(Note that any <link document="m12032">window</link> must be applied via frequency-domain convolution,
+which is quite efficient for sinusoidal windows such as the <link document="m12032">Hamming window</link>.)
 For step-sizes of 
  <m:math>
    <m:apply>
